@@ -25,5 +25,10 @@ namespace ModelLibraryFramework
             Type = type;
             Price = price;
         }
+
+        public override string ToString()
+        {
+            return $"Room: {RoomNo} at Hotel: {HotelNo}, Type: {Type}, Cost: {Price}";
+        }
     }
 }

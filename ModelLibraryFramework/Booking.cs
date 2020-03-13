@@ -32,5 +32,10 @@ namespace ModelLibraryFramework
             DateTo = dateTo;
             Room = room;
         }
+
+        public override string ToString()
+        {
+            return $"Booking: {BookingId}, Hotel: {HotelNo}, Room: {Room.RoomNo}, booked by {Guest.GuestNo}:{Guest.Name} from {DateFrom} to {DateTo}";
+        }
     }
 }

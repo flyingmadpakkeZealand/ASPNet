@@ -25,5 +25,10 @@ namespace ModelLibraryFramework
             Name = name;
             Address = address;
         }
+
+        public override string ToString()
+        {
+            return $"Guest: {GuestNo}, {Name} at {Address}";
+        }
     }
 }
