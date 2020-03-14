@@ -4,39 +4,33 @@ using System.Text;
 
 namespace ModelLibrary
 {
-    public class Booking : IFillable
+    public class Booking
     {
-        public int Booking_id { get; set; }
-        public int Hotel_No { get; set; }
+        public int BookingId { get; set; }
+        public int HotelNo { get; set; }
         public Guest Guest { get; set; }
-        public DateTime Date_From { get; set; }
-        public DateTime Date_To { get; set; }
-        public int Room_No { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
+        public Room Room { get; set; }
 
         public Booking()
         {
-            TableName = "Booking";
+
         }
 
-        public Booking(int bookingId, Guest guest, int hotelNo, DateTime dateFrom, DateTime dateTo, int roomNo)
+        public Booking(int bookingId, Guest guest, int hotelNo, DateTime dateFrom, DateTime dateTo, Room room)
         {
-            Booking_id = bookingId;
+            BookingId = bookingId;
             Guest = guest;
-            Hotel_No = hotelNo;
-            Date_From = dateFrom;
-            Date_To = dateTo;
-            Room_No = roomNo;
+            HotelNo = hotelNo;
+            DateFrom = dateFrom;
+            DateTo = dateTo;
+            Room = room;
         }
 
-        public string TableName { get; set; }
-        public void Fill(object[] dataObjects)
+        public override string ToString()
         {
-            Booking_id = (int) dataObjects[0];
-            Hotel_No = (int) dataObjects[1];
-            //Do guset
-            Date_From = (DateTime) dataObjects[3];
-            Date_To = (DateTime) dataObjects[4];
-            Room_No = (int) dataObjects[5];
+            return $"Booking: {BookingId}, Hotel: {HotelNo}, Room: {Room.RoomNo}, booked by {Guest.GuestNo}:{Guest.Name} from {DateFrom} to {DateTo}";
         }
     }
 }

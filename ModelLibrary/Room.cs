@@ -6,22 +6,27 @@ namespace ModelLibrary
 {
     public class Room
     {
-        public int Room_No { get; set; }
-        public int Hotel_No { get; set; }
-        public string Types { get; set; }
+        public int RoomNo { get; set; }
+        public int HotelNo { get; set; }
+        public string Type { get; set; }
         public double Price { get; set; }
 
         public Room()
         {
-            
+
         }
 
-        public Room(int roomNo, int hotelNo, string types, double price)
+        public Room(int roomNo, int hotelNo, string type, double price)
         {
-            Room_No = roomNo;
-            Hotel_No = hotelNo;
-            Types = types;
+            RoomNo = roomNo;
+            HotelNo = hotelNo;
+            Type = type;
             Price = price;
+        }
+
+        public override string ToString()
+        {
+            return $"Room: {RoomNo} at Hotel: {HotelNo}, Type: {Type}, Cost: {Price}";
         }
     }
 }

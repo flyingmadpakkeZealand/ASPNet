@@ -47,6 +47,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="ModelLibrary">
+      <HintPath>..\ModelLibrary\bin\Debug\netstandard2.0\ModelLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
@@ -124,10 +127,6 @@
     <ProjectReference Include="..\DBUtility\DBUtility.csproj">
       <Project>{b9c44f54-7aaa-4c13-86a9-ea24d8032a1a}</Project>
       <Name>DBUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelLibraryFramework\ModelLibraryFramework.csproj">
-      <Project>{b5574b38-316d-493c-8f84-12a3f5bb6302}</Project>
-      <Name>ModelLibraryFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -6,45 +6,25 @@ namespace ModelLibrary
 {
     public class Hotel
     {
-		private int _id;
-
-		public int Id
-		{
-			get { return _id; }
-			set { _id = value; }
-		}
-
-		private string _name;
-
-		public string Name
-		{
-			get { return _name; }
-			set { _name = value; }
-		}
-
-		private string _address;
-
-		public string Address
-		{
-			get { return _address; }
-			set { _address = value; }
-		}
+        public int HotelNo { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
 
         public Hotel()
         {
-            
+
         }
 
-        public Hotel(int id, string name, string address)
+        public Hotel(int hotelNo, string name, string address)
         {
-            _id = id;
-            _name = name;
-            _address = address;
+            HotelNo = hotelNo;
+            Name = name;
+            Address = address;
         }
 
         public override string ToString()
         {
-            return $"Hotel ID: {Id}, Name: {Name}, Address: {Address}";
+            return $"Hotel: {HotelNo}, {Name}, {Address}";
         }
     }
 }
