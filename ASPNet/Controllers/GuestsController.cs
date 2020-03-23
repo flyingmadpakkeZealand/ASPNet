@@ -38,13 +38,13 @@ namespace ASPNet.Controllers
         // POST: api/Guests
         public bool Post([FromBody]Guest guest)
         {
-            return manager.Post(() => Extractables.ExtractGuest(guest));
+            return manager.Post( Extractables.ExtractGuest(guest));
         }
 
         // PUT: api/Guests/5
         public bool Put(int id, [FromBody]Guest guest)
         {
-            return manager.Put(() => Extractables.ExtractGuest(guest), PrimaryKeys(id));
+            return manager.Put( Extractables.ExtractGuest(guest), PrimaryKeys(id));
         }
 
         // DELETE: api/Guests/5

@@ -9,7 +9,7 @@ using DBUtility;
 
 namespace ASPNet.App_Start
 {
-    enum BaseNames
+    public enum BaseNames
     {
         BaseHotel
     }

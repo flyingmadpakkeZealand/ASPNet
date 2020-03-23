@@ -37,13 +37,13 @@ namespace ASPNet.Controllers
         // POST: api/Hotels
         public bool Post([FromBody]Hotel hotel)
         {
-            return manager.Post(() => Extractables.ExtractHotel(hotel));
+            return manager.Post( Extractables.ExtractHotel(hotel));
         }
 
         // PUT: api/Hotels/5
         public bool Put(int id, [FromBody]Hotel hotel)
         {
-            return manager.Put(() => Extractables.ExtractHotel(hotel), PrimaryKeys(id));
+            return manager.Put( Extractables.ExtractHotel(hotel), PrimaryKeys(id));
         }
 
         // DELETE: api/Hotels/5

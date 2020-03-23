@@ -40,13 +40,13 @@ namespace ASPNet.Controllers
         // POST: api/Bookings
         public bool Post([FromBody]Booking booking) //Beware of cultural differences with dates
         {
-            return manager.Post(() => Extractables.ExtractBooking(booking));
+            return manager.Post( Extractables.ExtractBooking(booking));
         }
 
         // PUT: api/Bookings/5
         public bool Put(int id, [FromBody]Booking booking)
         {
-            return manager.Put(() => Extractables.ExtractBooking(booking), PrimaryKeys(id));
+            return manager.Put( Extractables.ExtractBooking(booking), PrimaryKeys(id));
         }
 
         // DELETE: api/Bookings/5

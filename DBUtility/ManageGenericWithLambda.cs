@@ -68,16 +68,16 @@ namespace DBUtility
             return item;
         }
 
-        public bool Post(Func<Dictionary<string, object>> extractFunc)
+        public bool Post(Dictionary<string, object> extractPairs)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
 
-                Dictionary<string, object> lookupPairs = extractFunc();
+                //Dictionary<string, object> extractPairs = extractFunc();
 
-                SqlCommand cmd = new SqlCommand($"Insert Into {_tableName}({CommaSeparatedKeys(lookupPairs.Keys)}) Values({CommaSeparatedKeys(lookupPairs.Keys, "@")})", conn);
-                cmd.Parameters.AddRange(ConstructParameters(lookupPairs));
+                SqlCommand cmd = new SqlCommand($"Insert Into {_tableName}({CommaSeparatedKeys(extractPairs.Keys)}) Values({CommaSeparatedKeys(extractPairs.Keys, "@")})", conn);
+                cmd.Parameters.AddRange(ConstructParameters(extractPairs));
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -86,16 +86,16 @@ namespace DBUtility
             }
         }
 
-        public bool Put(Func<Dictionary<string, object>> extractFunc, Dictionary<string, object> lookupDictionary)
+        public bool Put(Dictionary<string, object> extractPairs, Dictionary<string, object> lookupDictionary)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
 
-                Dictionary<string, object> lookupPairs = extractFunc();
+                //Dictionary<string, object> extractPairs = extractFunc();
 
-                SqlCommand cmd = new SqlCommand($"Update {_tableName} set {Clause(lookupPairs.Keys)} where {WhereClause(lookupDictionary.Keys)}", conn);
-                cmd.Parameters.AddRange(ConstructParameters(lookupPairs));
+                SqlCommand cmd = new SqlCommand($"Update {_tableName} set {Clause(extractPairs.Keys)} where {WhereClause(lookupDictionary.Keys)}", conn);
+                cmd.Parameters.AddRange(ConstructParameters(extractPairs));
                 cmd.Parameters.AddRange(ConstructParametersWhereClause(lookupDictionary));
 
                 int rowsAffected = cmd.ExecuteNonQuery();
