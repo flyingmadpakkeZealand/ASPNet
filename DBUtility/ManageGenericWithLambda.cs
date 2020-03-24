@@ -79,7 +79,15 @@ namespace DBUtility
                 SqlCommand cmd = new SqlCommand($"Insert Into {_tableName}({CommaSeparatedKeys(extractPairs.Keys)}) Values({CommaSeparatedKeys(extractPairs.Keys, "@")})", conn);
                 cmd.Parameters.AddRange(ConstructParameters(extractPairs));
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = 0;
+                try
+                {
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqle)
+                {
+                    return false;
+                }
 
 
                 return rowsAffected == 1;
@@ -98,7 +106,15 @@ namespace DBUtility
                 cmd.Parameters.AddRange(ConstructParameters(extractPairs));
                 cmd.Parameters.AddRange(ConstructParametersWhereClause(lookupDictionary));
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = 0;
+                try
+                {
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqle)
+                {
+                    return false;
+                }
 
 
                 return rowsAffected == 1;
