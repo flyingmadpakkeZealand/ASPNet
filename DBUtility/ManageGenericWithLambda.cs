@@ -68,6 +68,30 @@ namespace DBUtility
             return item;
         }
 
+        public IEnumerable<T> GetSelection(Action<T, SqlDataReader> fillMethod,
+            Dictionary<string, object> lookupDictionary)
+        {
+            List<T> list = new List<T>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd =
+                    new SqlCommand($"Select * From {_tableName} where {WhereClause(lookupDictionary.Keys)}", conn);
+                cmd.Parameters.AddRange(ConstructParametersWhereClause(lookupDictionary));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    T item = ReadItem(fillMethod, reader);
+                    list.Add(item);
+                }
+            }
+
+            return list;
+        }
+
         public bool Post(Dictionary<string, object> extractPairs)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
