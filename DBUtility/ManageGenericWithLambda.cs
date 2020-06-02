@@ -157,7 +157,7 @@ namespace DBUtility
                 int rowsAffected = cmd.ExecuteNonQuery();
 
 
-                return rowsAffected == 1;
+                return rowsAffected >= 1;
             }
         }
 
