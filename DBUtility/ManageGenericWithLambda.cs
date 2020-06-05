@@ -46,6 +46,13 @@ namespace DBUtility
             return item;
         }
 
+        private TB ReadItem<TB>(Action<TB, SqlDataReader> fillMethod, SqlDataReader reader) where TB : new()
+        {
+            TB item = new TB();
+            fillMethod(item, reader);
+            return item;
+        }
+
         public T GetOne(Action<T, SqlDataReader> fillMethod, Dictionary<string, object> lookupDictionary)
         {
             T item = default;
@@ -159,6 +166,26 @@ namespace DBUtility
 
                 return rowsAffected >= 1;
             }
+        }
+
+        public List<TB> GetCustomQuery<TB>(Action<TB, SqlDataReader> fillMethod, string sqlSentence) where TB : new() 
+        {
+            List<TB> list = new List<TB>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sqlSentence, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TB item = ReadItem(fillMethod, reader);
+                    list.Add(item);
+                }
+            }
+
+            return list;
         }
 
         private SqlParameter[] ConstructParameters(Dictionary<string, object> lookupPairs)
